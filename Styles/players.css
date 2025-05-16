@@ -1,0 +1,229 @@
+body {
+    background-color: rgb(48, 47, 47);
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    height: 100px;
+    background-color: black;
+}
+
+.left-section {
+    width: 700px;
+    margin-right: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.Haikyuu-Logo {
+    width: 150px;
+    margin-left: 40px;
+}
+
+.right-section {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: rgb(33, 37, 41);
+    color: white;
+    padding: 9.5px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-right: 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.dropbtn:hover, 
+.dropbtn:focus {
+    background-color: rgb(106, 108, 106);
+}
+
+/* Dropdown Content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    border: 1px solid #ddd;
+    z-index: 1;
+    transition: opacity 0.3s ease; /* Smooth appearance */
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show dropdown */
+.show {
+    display: block;
+}
+
+
+.bgPagePlayer {
+    margin: 0;
+    background-color: rgb(102, 101, 101);
+    background-size: cover; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image */
+    height: 100vh; /* Ensures it covers the full height */
+    display: flex;
+    justify-content: center; /* Centers the content */
+    align-items: center; /* Vertically centers the content */
+}
+
+.PlayerTable {
+    background-color: rgb(255, 255, 255);
+    backdrop-filter: blur(10px); /* Blur effect */
+    border-radius: 15px; /* Rounded corners */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Optional border */
+    width: 90%;
+    margin: 20px auto; /* Decreased margin-top and margin-bottom */
+    margin-left: 67px; /* Retained left margin */
+    margin-right: 10px; /* Retained right margin */
+    border-collapse: collapse;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+    padding: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.PlayerTableHeader {
+    text-align: center;
+    padding-bottom: 20px;
+    font-weight: 500;
+}
+
+th, td {
+    color: black;
+    padding: 15px;
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 1.125rem; /* Use rem for consistency */
+}
+
+td {
+    background-color: pink;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: left;
+}
+
+/* Search and Button Styles */
+.searchAndButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.searchField {
+    flex: 1;
+    margin-right: 30px;
+    margin-left: 20px;
+}
+
+.searchField input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 8px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    font-size: 1rem; /* Use rem for responsiveness */
+}
+
+.searchField input:focus {
+    outline: 3px solid #ddd;
+}
+
+.sortingButtons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+.buttonBelow {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+    width: 100%; /* Ensure it takes full width */
+}
+
+.sortingButtons {
+    display: flex; /* Keep sorting buttons together */
+    gap: 10px; /* Space between buttons */
+}
+
+.spacer {
+    flex-grow: 1; /* Takes up remaining space */
+}
+
+.backupButtonContainer {
+    margin-left: 20px; /* Optional: Add space between the buttons */
+}
+
+/* Hover Effects for Navigation */
+.players, .coaches, .school, .faqs, .account, .home {
+    border: 0;
+    background-color: transparent;
+    color: white;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 20px;
+    margin-right: 30px;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.players:hover, .coaches:hover, .school:hover, .faqs:hover, .account:hover, .home:hover {
+    cursor: pointer;
+    background-color: rgba(78, 78, 78, 0.2);
+}
+
+.logout {
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Responsive Design Considerations */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .left-section, .right-section {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .PlayerTable {
+        width: 100%;
+    }
+}
+
+.belowPlayersPage {
+    background-color: khaki;
+    margin-top: 0px;
+}
+

@@ -1,0 +1,263 @@
+body {
+    background-color: rgb(48, 47, 47);
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    height: 100px;
+    background-color: black;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.left-section {
+    width: 700px;
+    margin-right: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.Haikyuu-Logo {
+    width: 150px;
+    margin-left: 40px;
+}
+
+.right-section {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: rgb(33, 37, 41);
+    color: white;
+    padding: 9.5px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-right: 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.dropbtn:hover, 
+.dropbtn:focus {
+    background-color: rgb(106, 108, 106);
+}
+
+/* Dropdown Content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    border: 1px solid #ddd;
+    z-index: 1;
+    transition: opacity 0.3s ease; /* Smooth appearance */
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show dropdown */
+.show {
+    display: block;
+}
+
+/* Hover Effects for Navigation */
+.players, .coaches, .school, .faqs, .account, .home {
+    border: 0;
+    background-color: transparent;
+    color: white;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 20px;
+    margin-right: 30px;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.players:hover, .coaches:hover, .school:hover, .faqs:hover, .account:hover, .home:hover {
+    cursor: pointer;
+    background-color: rgba(78, 78, 78, 0.2);
+}
+
+.logout {
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Responsive Design Considerations */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .left-section, .right-section {
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+.OneSchoolBackground {
+    background-color: black;
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space elements evenly */
+    padding: 20px; /* Add some padding for aesthetics */
+}
+
+.leftSchoolOne {
+    background-color:black;
+    flex: 1;
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: flex-start; /* Align to the left */
+}
+
+.rightSchoolOne {
+    flex: 1; /* Allow this section to take available space */
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: flex-end; /* Align to the right */
+}
+
+.glassContainerOne {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Inner padding */
+    backdrop-filter: blur(10px); /* Glass effect */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+.karasunoDescription {
+    color: white;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    word-spacing: 10px;
+    letter-spacing: 10%;
+    line-height: 30px;
+    margin-bottom: 24px;
+    margin-left: 14px;
+}
+
+.karasunoLogo {
+    width: 500px;
+    margin-left: 100px;
+    border-radius: 200px;
+}
+
+
+
+.TwoSchoolBackground {
+    background-color: #c92323;
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space elements evenly */
+    padding: 20px; /* Add some padding for aesthetics */
+}
+
+.leftSchoolTwo {
+    background-color:#c92323;
+    flex: 1;
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: flex-start; /* Align to the left */
+}
+
+.rightSchoolTwo {
+    background-color: #c92323;
+    flex: 1; /* Allow this section to take available space */
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: flex-end; /* Align to the right */
+}
+
+.glassContainerTwo {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Inner padding */
+    backdrop-filter: blur(10px); /* Glass effect */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+.nekomaDescription {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    word-spacing: 10px;
+    letter-spacing: 10%;
+    line-height: 30px;
+    margin-bottom: 24px;
+    margin-left: 14px;
+}
+
+.nekomaLogo {
+    width: 550px;
+    margin-left: 100px;
+    border-radius: 350px;
+}
+
+
+
+.ThreeSchoolBackground {
+    background-color: #ffffff;
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space elements evenly */
+    padding: 20px; /* Add some padding for aesthetics */
+}
+
+.leftSchoolThree {
+    background-color:#ffffff;
+    flex: 1;
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: flex-start; /* Align to the left */
+}
+
+.rightSchoolThree {
+    background-color: #ffffff;
+    flex: 1; /* Allow this section to take available space */
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: flex-end; /* Align to the right */
+}
+
+.glassContainerThree {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Inner padding */
+    backdrop-filter: blur(10px); /* Glass effect */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+.shiratorizawaDescription {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    word-spacing: 10px;
+    letter-spacing: 10%;
+    line-height: 30px;
+    margin-bottom: 24px;
+    margin-left: 14px;
+}
+
+.shiratorizawaLogo {
+    width: 450px;
+    margin-left: 70px;
+    border-radius: 250px;
+}

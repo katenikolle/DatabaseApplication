@@ -1,0 +1,146 @@
+body {
+    background-color: rgb(48, 47, 47);
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    height: 100px;
+    flex-direction: row;
+    margin-top: 0px;
+    background-color: black;
+}
+
+
+
+.left-section {
+    width: 700px;
+    margin-right: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.Haikyuu-Logo {
+    width: 150px;
+    margin-left: 40px;
+}
+
+.right-section {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-shrink: 0;
+    position: relative;
+}
+
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none; 
+    position: absolute; 
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; 
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.players, .coaches, .school, .faqs, .account, .home {
+    border: 0cap;
+    background-color: transparent;
+    color: white;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 20px;
+    margin-right: 30px;
+}
+
+
+.players:hover,
+.coaches:hover,
+.school:hover,
+.faqs:hover,
+.account:hover,
+.home:hover {
+    cursor: pointer;
+    background-color: rgba(78, 78, 78, 0.2);
+}
+
+.logout {
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.bgPageCoaches {
+    margin: 0;
+    background-color: rgb(102, 101, 101);
+    background-size: cover; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image */
+    height: 100vh; /* Ensures it covers the full height */
+    display: flex;
+    justify-content: center; /* Centers the content */
+    align-items: center; /* Vertically centers the content */
+}
+
+.CoachTable {
+    background-color: rgb(255, 255, 255);
+    backdrop-filter: blur(10px); /* Blur effect */
+    border-radius: 15px; /* Rounded corners */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Optional border */
+    width: 90%;
+    margin: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 67px;
+    margin-right: 10px;
+    border-collapse: collapse;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+    padding: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+table {
+    width: 100%;
+}
+
+.CoachTableHeader {
+    text-align: center;
+}
+
+th, td {
+    color: black;
+    padding: 15px; /* Add padding for spacing */
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: center; /* Center text */
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+}
+
+td {
+    background-color: pink;
+    color: red;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: left;
+}

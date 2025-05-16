@@ -1,0 +1,113 @@
+body {
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    height: 100px;
+    flex-direction: row;
+    margin-top: 0px;
+    background-color: black;
+}
+
+
+
+.left-section {
+    width: 700px;
+    margin-right: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.Haikyuu-Logo {
+    width: 150px;
+    margin-left: 40px;
+}
+
+.right-section {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-shrink: 0;
+    position: relative;
+}
+
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none; 
+    position: absolute; 
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; 
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.players, .coaches, .school, .faqs, .account, .home {
+    border: 0cap;
+    background-color: transparent;
+    color: white;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 20px;
+    margin-right: 30px;
+}
+
+
+.players:hover,
+.coaches:hover,
+.school:hover,
+.faqs:hover,
+.account:hover,
+.home:hover {
+    cursor: pointer;
+    background-color: rgba(78, 78, 78, 0.2);
+}
+
+.logout {
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.faqsheader, .faqs1, .faqs2, .faqs3, .faqsone, .faqstwo, .faqsthree {
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1.5px;
+}
+
+.faqsheader {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 60px;
+}
+
+.faqs1, .faqs2, .faqs3 {
+    margin-left: 15px;
+    font-size: 26px;
+}
+
+.faqsone, .faqstwo, .faqsthree {
+    margin-left: 30px;
+    margin-right: 50px;
+    line-height: 30px;
+}
