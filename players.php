@@ -63,7 +63,6 @@
     <div class="dropdown">
         <button id="positionButton" onclick="myFunction()" class="dropbtn"><i class="fa fa-filter"></i> Position</button>
         <div id="myDropdown" class="dropdown-content">
-            <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
             <a href="#" data-value="" onclick="filterPlayersByPosition('')">All Positions</a> 
             <a href="#" data-value="Setter">Setter</a>
             <a href="#" data-value="Middle Blocker">Middle Blocker</a>
