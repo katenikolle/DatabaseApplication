@@ -144,3 +144,11 @@ td {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: left;
 }
+
+.spacer {
+    flex-grow: 1; /* Takes up remaining space */
+}
+
+.backupButtonContainer {
+    margin-left: 1180px; /* Optional: Add space between the buttons */
+}

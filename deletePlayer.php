@@ -1,4 +1,9 @@
 <?php
+session_start(); // Start the session
+
+// Assuming user email is stored in session
+$userEmail = $_SESSION['email'];
+
 if (isset($_GET['playerId'])) {
     $playerId = $_GET['playerId'];
 
@@ -14,9 +19,25 @@ if (isset($_GET['playerId'])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
+    // Fetch player details to check email
+    $sql = "SELECT email FROM players WHERE playerId='$playerId'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+
+    if (!$row) {
+        header("Location: players.php");
+        exit;
+    }
+
+    // Check if the logged-in user is allowed to delete
+    if ($row['email'] !== $userEmail && $userEmail !== '1206knikolle@gmail.com') {
+        header("Location: players.php");
+        exit;
+    }
+
     // Use prepared statement to prevent SQL injection
     $stmt = $conn->prepare("DELETE FROM players WHERE playerId = ?");
-    $stmt->bind_param("i", $playerId); // 'i' indicates the type is integer
+    $stmt->bind_param("i", $playerId);
 
     if ($stmt->execute()) {
         // Deletion successful

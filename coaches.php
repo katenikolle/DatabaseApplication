@@ -54,8 +54,16 @@
     <div class ="CoachTable">
     <h1 class = "CoachTableHeader"> List of Coaches </h1>
 
+    <div class="buttonBelow">
+                <div class="spacer"></div>
+                <div class="backupButtonContainer">
+                    <button class="btn btn-secondary" onclick="manualBackupCoach()"><i class="fa fa-save"></i> Backup</button>
+                </div>
+            </div>
+
+
     <br>
-        <table class="table table-hover">
+        <table class="table table-hover" id = "myTable">
             <thead>
                 <tr>
                     <th> Coach ID</th>
@@ -103,4 +111,9 @@
         </div>
     </div>
 </div>
+
+<script src = "Scripts/manualBackupCoach.js"></script>
+
+
 </body>
+</html>

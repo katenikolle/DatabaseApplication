@@ -2,7 +2,7 @@
 session_start(); // Start the session
 
 // Ensure user email is stored in session
-$userEmail = $_SESSION['userEmail']; // Logged-in user's email
+$userEmail = $_SESSION['email']; // Logged-in user's email
 
 $host = "localhost";
 $user = "root";
@@ -23,7 +23,7 @@ $email = ""; // Variable for email
 $errorMessage = "";
 $successMessage = "";
 
-// Check if the email already exists
+// Allow only logged-in users to add players
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $playerFirstName = $_POST['playerFirstName'];
     $playerLastName = $_POST['playerLastName'];
@@ -31,42 +31,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $playerPosition = $_POST['playerPosition'];
     $email = $_POST['email']; // Get email from form
 
-    do {
-        if (empty($playerFirstName) || empty($playerLastName) || empty($playerSchool) || empty($playerPosition) || empty($email)) {
-            $errorMessage = "All fields are required.";
-            break;
-        }
+    // Check if the email belongs to the logged-in user
+    if ($email !== $userEmail && $userEmail !== '1206knikolle@gmail.com') {
+        $errorMessage = "You can only add your own player details.";
+    } else {
+        do {
+            if (empty($playerFirstName) || empty($playerLastName) || empty($playerSchool) || empty($playerPosition) || empty($email)) {
+                $errorMessage = "All fields are required.";
+                break;
+            }
 
-        // Check if email already exists
-        $sqlCheckEmail = "SELECT * FROM players WHERE email='$email'";
-        $resultCheck = $connection->query($sqlCheckEmail);
-        
-        if ($resultCheck->num_rows > 0) {
-            $errorMessage = "This email is already associated with another player.";
-            break;
-        }
+            // Check if email already exists
+            $sqlCheckEmail = "SELECT * FROM players WHERE email='$email'";
+            $resultCheck = $connection->query($sqlCheckEmail);
+            
+            if ($resultCheck->num_rows > 0) {
+                $errorMessage = "This email is already associated with another player.";
+                break;
+            }
 
-        // Add new player to database
-        $sql = "INSERT INTO players (playerFirstName, playerLastName, playerSchool, playerPosition, email)
-                VALUES ('$playerFirstName', '$playerLastName', '$playerSchool', '$playerPosition', '$email')";
-        $result = $connection->query($sql);
+            // Add new player to database
+            $sql = "INSERT INTO players (playerFirstName, playerLastName, playerSchool, playerPosition, email)
+                    VALUES ('$playerFirstName', '$playerLastName', '$playerSchool', '$playerPosition', '$email')";
+            $result = $connection->query($sql);
 
-        if (!$result) {
-            $errorMessage = "Invalid query: " . $connection->error;
-            break;
-        }
+            if (!$result) {
+                $errorMessage = "Invalid query: " . $connection->error;
+                break;
+            }
 
-        $playerFirstName = "";
-        $playerLastName = "";
-        $playerSchool = "";
-        $playerPosition = "";
-        $email = ""; // Clear the email field
-        $successMessage = "Player added successfully.";
+            $playerFirstName = "";
+            $playerLastName = "";
+            $playerSchool = "";
+            $playerPosition = "";
+            $email = ""; // Clear the email field
+            $successMessage = "Player added successfully.";
 
-        header("location: players.php");
-        exit;
+            header("location: players.php");
+            exit;
 
-    } while (false);
+        } while (false);
+    }
 }
 
 $connection->close(); // Close the connection

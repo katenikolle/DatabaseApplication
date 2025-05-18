@@ -1,4 +1,10 @@
 <?php
+session_start(); // Start the session
+
+// Assuming user email is stored in session
+$userEmail = $_SESSION['email']; // This line retrieves the user's email from the session
+
+$allowedEmail = "1206knikolle@gmail.com"; // Set the allowed email
 
 $host = "localhost";
 $user = "root";
@@ -10,20 +16,26 @@ $connection = new mysqli($host, $user, $pass, $db);
 $coachId = "";
 $coachFirstName = "";
 $coachLastName = "";
-$coachSchool = "";
+$coachSchool = ""; // Keep this, but it won't be editable
 
 $errorMessage = "";
 $successMessage = "";
 
+// Check if the user is authorized to edit
+if ($userEmail !== $allowedEmail) {
+    header("Location: coaches.php?error=" . urlencode("You are not authorized to edit coaches."));
+    exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    //GET method
+    // GET method
     if (!isset($_GET['coachId'])) {
         header("location: coaches.php");
         exit;
     }
 
     $coachId = $_GET["coachId"];
-    $sql = "SELECT * FROM coaches WHERE coachId='$coachId'"; // Fixed variable reference
+    $sql = "SELECT * FROM coaches WHERE coachId='$coachId'";
     $result = $connection->query($sql);
     $row = $result->fetch_assoc();
 
@@ -35,24 +47,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Pre-fill the form with existing data
     $coachFirstName = $row['coachFirstName'];
     $coachLastName = $row['coachLastName'];
-    $coachSchool = $row['coachSchool'];
+    $coachSchool = $row['coachSchool']; // Fetch, but don't let user edit
 
 } else {
-    //POST method
+    // POST method
     $coachId = $_POST['coachId'];
     $coachFirstName = $_POST['coachFirstName'];
     $coachLastName = $_POST['coachLastName'];
-    $coachSchool = $_POST['coachSchool'];
+    // coachSchool remains unchanged
 
-    if (empty($coachId) || empty($coachFirstName) || empty($coachLastName) || empty($coachSchool)) {
-        $errorMessage = "All the fields are required.";
+    if (empty($coachId) || empty($coachFirstName) || empty($coachLastName)) {
+        $errorMessage = "First name and Last name are required.";
     } else {
         $sql = "UPDATE coaches SET 
-        coachFirstName='$coachFirstName', 
-        coachLastName='$coachLastName', 
-        coachSchool='$coachSchool' 
+                coachFirstName='$coachFirstName', 
+                coachLastName='$coachLastName'
+                WHERE coachId='$coachId'";
 
-        WHERE coachId='$coachId'";
         $result = $connection->query($sql);
 
         if (!$result) {
@@ -65,6 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
 }
 
+$connection->close(); // Close the connection
 ?>
 
 <!DOCTYPE html>
@@ -73,12 +85,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Coach</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="Styles/updatePlayer.css">
 </head>
 <body>
-
     <div class="container my-5">
         <h2>Update Coach</h2>
 
@@ -109,10 +119,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">School</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="coachSchool" value="<?php echo htmlspecialchars($coachSchool); ?>">
+                    <input type="text" class="form-control" name="coachSchool" value="<?php echo htmlspecialchars($coachSchool); ?>" readonly>
                 </div>
             </div>
-
 
             <?php if (!empty($successMessage)): ?>
                 <div class='alert alert-success alert-dismissible fade show' role='alert'>
@@ -131,6 +140,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </div>
         </form>
     </div>
-
 </body>
 </html>

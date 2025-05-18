@@ -13,7 +13,7 @@ $registerError = isset($_GET['register_error']) ? htmlspecialchars($_GET['regist
 // Handle login
 if (isset($_POST['signIn'])) {
     $email = $_POST['email'];
-    $password = md5($_POST['password']); // Use a stronger hashing method in production (e.g., password_hash)
+    $password = md5($_POST['password']);
 
     $sql = "SELECT * FROM users WHERE email='$email'";
     $result = $conn->query($sql);
@@ -22,7 +22,7 @@ if (isset($_POST['signIn'])) {
         $row = $result->fetch_assoc();
         if ($row['password'] === $password) {
             $_SESSION['email'] = $row['email'];
-            header("Location: homepage.php"); // Corrected to homepage.php
+            header("Location: homepage.php");
             exit();
         } else {
             header("Location: index.php?login_error=" . urlencode("Incorrect password."));
@@ -39,7 +39,15 @@ if (isset($_POST['signUp'])) {
     $firstName = $_POST['fName'];
     $lastName = $_POST['lName'];
     $email = $_POST['email'];
-    $password = md5($_POST['password']); // Use a stronger hashing method in production (e.g., password_hash)
+    $password = md5($_POST['password']);
+    $confirmPassword = md5($_POST['confirmPassword']); // Hash for comparison
+
+    // Check if passwords match
+    if ($password !== $confirmPassword) {
+        header("Location: index.php?register_error=" . urlencode("Passwords do not match!"));
+        exit();
+    }
+    
 
     $checkEmail = "SELECT * FROM users WHERE email='$email'";
     $result = $conn->query($checkEmail);
@@ -50,9 +58,7 @@ if (isset($_POST['signUp'])) {
     } else {
         $insertQuery = "INSERT INTO users (firstName, lastName, email, password) VALUES ('$firstName', '$lastName', '$email', '$password')";
         if ($conn->query($insertQuery) === TRUE) {
-            // Optional: Log the user in directly after successful registration
-            // $_SESSION['email'] = $email;
-            header("Location: index.php?success=registration_successful"); // Redirect with a success message
+            header("Location: index.php?success=registration_successful");
             exit();
         } else {
             header("Location: index.php?register_error=" . urlencode("Error: " . $conn->error));
@@ -93,33 +99,38 @@ if (isset($_POST['signUp'])) {
     <img class="backgroundIndex" src="IndexPictures/volleyhaikyuu.png">
 
     <div class="container" id="signUp" style="display: none;">
-        <h1 class="form-title">Register</h1>
-        <form method="post" action="index.php"> <div class="input-group">
-                <input type="text" name="fName" id="fName" placeholder="First Name" required>
-                <label for="fName">First Name</label>
-            </div>
-            <div class="input-group">
-                <input type="text" name="lName" id="lName" placeholder="Last Name" required>
-                <label for="lName">Last Name</label>
-            </div>
-            <div class="input-group">
-                <input type="text" name="email" id="email" placeholder="Email Address" required>
-                <label for="email">Email Address</label>
-            </div>
-            <div class="input-group">
-                <input type="password" name="password" id="password" placeholder="Password" required>
-                <label for="password">Password</label>
-            </div>
-            <input type="submit" class="btn" value="Sign Up" name="signUp">
-        </form>
-        <div class="links">
-            <p>Already have an account?</p>
-            <button id="signInButton">Sign In</button>
+    <h1 class="form-title">Register</h1>
+    <form method="post" action="index.php">
+        <div class="input-group">
+            <input type="text" name="fName" id="fName" placeholder="First Name" required>
+            <label for="fName">First Name</label>
         </div>
-        <?php if ($registerError): ?>
-            <div class="error-message"><?php echo $registerError; ?></div>
-        <?php endif; ?>
+        <div class="input-group">
+            <input type="text" name="lName" id="lName" placeholder="Last Name" required>
+            <label for="lName">Last Name</label>
+        </div>
+        <div class="input-group">
+            <input type="text" name="email" id="email" placeholder="Email Address" required>
+            <label for="email">Email Address</label>
+        </div>
+        <div class="input-group">
+            <input type="password" name="password" id="password" placeholder="Password" required>
+            <label for="password">Password</label>
+        </div>
+        <div class="input-group">
+            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Re-enter Password" required>
+            <label for="confirmPassword">Re-enter Password</label>
+        </div>
+        <input type="submit" class="btn" value="Sign Up" name="signUp">
+    </form>
+    <div class="links">
+        <p>Already have an account?</p>
+        <button id="signInButton">Sign In</button>
     </div>
+    <?php if ($registerError): ?>
+        <div class="error-message"><?php echo $registerError; ?></div>
+    <?php endif; ?>
+</div>
 
     <div class="container" id="signIn" style="display: block;">
         <h1 class="form-title">Sign In</h1>
@@ -131,9 +142,7 @@ if (isset($_POST['signUp'])) {
                 <input type="password" name="password" id="signInPassword" placeholder="Password" required>
                 <label for="signInPassword">Password</label>
             </div>
-            <p class="recover">
-                <a href="#">Recover Password</a>
-            </p>
+           
             <input type="submit" class="btn" value="Sign In" name="signIn">
         </form>
         <div class="links">

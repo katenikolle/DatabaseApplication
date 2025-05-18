@@ -61,16 +61,27 @@
     </div>
 
     <div class="dropdown">
-        <button id="positionButton" onclick="myFunction()" class="dropbtn"><i class="fa fa-filter"></i> Position</button>
-        <div id="myDropdown" class="dropdown-content">
-            <a href="#" data-value="" onclick="filterPlayersByPosition('')">All Positions</a> 
-            <a href="#" data-value="Setter">Setter</a>
-            <a href="#" data-value="Middle Blocker">Middle Blocker</a>
-            <a href="#" data-value="Libero">Libero</a>
-            <a href="#" data-value="Left-Wing Spiker">Left-Wing Spiker</a>
-            <a href="#" data-value="Right-Wing Spiker">Right-Wing Spiker</a>
-        </div>
+    <button id="positionButton" onclick="toggleDropdown('myDropdown')" class="dropbtn"><i class="fa fa-filter"></i> Position</button>
+    <div id="myDropdown" class="dropdown-content">
+        <a href="#" data-value="" onclick="filterPlayers('position', '')">All Positions</a> 
+        <a href="#" data-value="Setter" onclick="filterPlayers('position', 'Setter')">Setter</a>
+        <a href="#" data-value="Middle Blocker" onclick="filterPlayers('position', 'Middle Blocker')">Middle Blocker</a>
+        <a href="#" data-value="Libero" onclick="filterPlayers('position', 'Libero')">Libero</a>
+        <a href="#" data-value="Left-Wing Spiker" onclick="filterPlayers('position', 'Left-Wing Spiker')">Left-Wing Spiker</a>
+        <a href="#" data-value="Right-Wing Spiker" onclick="filterPlayers('position', 'Right-Wing Spiker')">Right-Wing Spiker</a>
     </div>
+</div>
+
+<div class="dropdown">
+    <button id="schoolButton" onclick="toggleDropdown('myDropdownSchool')" class="dropbtn"><i class="fa fa-filter"></i> School</button>
+    <div id="myDropdownSchool" class="dropdown-content">
+        <a href="#" data-value="" onclick="filterPlayers('school', '')">All Schools</a>
+        <a href="#" data-value="Karasuno" onclick="filterPlayers('school', 'Karasuno')">Karasuno</a>
+        <a href="#" data-value="Aoba Johsai" onclick="filterPlayers('school', 'Aoba Johsai')">Aoba Johsai</a>
+        <a href="#" data-value="Nekoma" onclick="filterPlayers('school', 'Nekoma')">Nekoma</a>
+    </div>
+</div>
+
 
     <div class="newPlayerButton">       
         <a class="btn btn-dark" href="createPlayer.php" role="button"><i class='far fa-id-badge'></i> New Player</a>
@@ -78,9 +89,6 @@
     </div>
 
     <div class="buttonBelow">
-    <!-- Sorting Buttons -->
-
-    <!-- Large Spacer -->
     <div class="spacer"></div>
 
     <div class="backupButtonContainer">

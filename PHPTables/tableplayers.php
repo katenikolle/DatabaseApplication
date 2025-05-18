@@ -15,7 +15,18 @@ if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
 
-// Sample query to fetch players (you should modify this as needed)
+// Query to count players in each school
+$countSql = "SELECT playerSchool, COUNT(*) as playerCount FROM players GROUP BY playerSchool";
+$countResult = $connection->query($countSql);
+
+$playerCounts = [];
+if ($countResult->num_rows > 0) {
+    while ($row = $countResult->fetch_assoc()) {
+        $playerCounts[$row['playerSchool']] = $row['playerCount'];
+    }
+}
+
+// Query to fetch players
 $sql = "SELECT * FROM players"; // Adjust table name and fields as necessary
 $result = $connection->query($sql);
 
@@ -27,7 +38,6 @@ if ($result->num_rows > 0) {
                 <td>{$row['playerLastName']}</td>
                 <td>{$row['playerSchool']}</td>
                 <td>{$row['playerPosition']}</td>
-                
                 <td>
                     <a href='editPlayer.php?playerId={$row['playerId']}' class='btn btn-dark' title='Edit'>
                         <i class='fas fa-edit'></i> <!-- Edit icon -->
@@ -42,5 +52,6 @@ if ($result->num_rows > 0) {
     echo "<tr><td colspan='6'>No players found.</td></tr>";
 }
 
+// Close the connection
 $connection->close();
 ?>

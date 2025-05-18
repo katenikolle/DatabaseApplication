@@ -1,4 +1,4 @@
-function manualBackup() {
+function manualBackupCoach() {
     const data = document.getElementById('myTable').outerHTML; // Get the table data
     const blob = new Blob([data], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
@@ -15,7 +15,7 @@ function manualBackup() {
     const seconds = String(today.getSeconds()).padStart(2, '0');
     
     // Change the filename to include time
-    const fileName = `playerBackup/backup-${year}-${month}-${day}_${hours}-${minutes}-${seconds}.sql`;
+    const fileName = `coachBackup/backup-${year}-${month}-${day}_${hours}-${minutes}-${seconds}.sql`;
 
     a.download = fileName; // Set the new filename with the date and time
     document.body.appendChild(a);
